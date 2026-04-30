@@ -18,7 +18,7 @@ export default function PracticeArea({ title, description, icon, expandedContent
 
   return (
     <div
-      className={`p-8 border cursor-pointer transition-all duration-300 ${
+      className={`h-full flex flex-col p-8 border cursor-pointer transition-all duration-300 ${
         isExpanded
           ? 'bg-gn-white shadow-xl border-gn-black -translate-y-1'
           : 'bg-gn-white shadow-sm border-gn-gray/20 hover:border-gn-black hover:shadow-lg hover:-translate-y-1'
@@ -50,7 +50,7 @@ export default function PracticeArea({ title, description, icon, expandedContent
       </div>
 
       <h3 className="text-xl font-display text-gn-black mb-3">{title}</h3>
-      <p className="text-gn-gray leading-relaxed">{description}</p>
+      <p className="text-gn-gray leading-relaxed min-h-[72px]">{description}</p>
 
       <div className={`overflow-hidden transition-all duration-500 ${
         isExpanded ? 'max-h-96 opacity-100 mt-6' : 'max-h-0 opacity-0'

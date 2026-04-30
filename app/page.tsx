@@ -363,13 +363,13 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="aspect-[4/3] bg-gn-black flex items-center justify-center">
+              <div className="aspect-[4/3] overflow-hidden">
                 <Image
-                  src="/images/logo-gn.jpeg"
-                  alt="GN Estudio González Novillo"
-                  width={400}
-                  height={200}
-                  className="w-3/4 h-auto"
+                  src="/images/equipo-gn.jpg"
+                  alt="Equipo GN Estudio González Novillo"
+                  width={800}
+                  height={600}
+                  className="w-full h-full object-cover"
                 />
               </div>
               {/* Decorative elements */}
