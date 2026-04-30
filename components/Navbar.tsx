@@ -32,15 +32,15 @@ export default function Navbar() {
   return (
     <nav className="bg-gn-white fixed w-full z-20 top-0 start-0 border-b border-gn-gray/30">
       <div className="max-w-screen-xl mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo-gn.jpeg"
               alt="GN Estudio González Novillo"
-              width={280}
-              height={60}
-              className="h-12 w-auto"
+              width={320}
+              height={80}
+              className="h-14 md:h-16 w-auto"
               priority
             />
           </Link>
