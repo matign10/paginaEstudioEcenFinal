@@ -203,24 +203,9 @@ export default function Home() {
                 url: "https://www.diariopopular.com.ar/espectaculos/abogado-larsson-la-denuncia-es-extorsion-y-no-abuso-n136219"
               },
               {
-                source: "TN",
-                title: "Detienen a modelo sueca por extorsión",
-                url: "https://tn.com.ar/policiales/2024/06/04/detuvieron-a-alexandra-larsson-la-modelo-sueca-acusada-de-extorsionar-a-un-empresario/"
-              },
-              {
-                source: "Clarín",
-                title: "Fraher Group: Denuncian a desarrollador inmobiliario por estafa",
-                url: "https://www.clarin.com/policiales/200-damnificados-denuncian-fraude-inmobiliario-millonario-empresa-construia-edificios-pozo_0_hSl3GKi5Wy.html"
-              },
-              {
-                source: "TN",
-                title: "Fraher Group: Más de 200 damnificados por presunta estafa inmobiliaria",
-                url: "https://tn.com.ar/policiales/2024/08/22/mas-de-200-damnificados-por-una-presunta-estafa-inmobiliaria-les-prometieron-departamentos-y-nunca-entregaron/"
-              },
-              {
                 source: "Infobae",
-                title: "Fraher Group: Escándalo inmobiliario deja cientos de afectados",
-                url: "https://www.infobae.com/sociedad/policiales/2024/08/22/mas-de-200-familias-denuncian-a-un-empresario-por-estafa-vendio-departamentos-en-pozo-y-nunca-los-entrego/"
+                title: "Los detalles de la segunda denuncia penal a Marcelo Moretti, presentada por un dirigente de San Lorenzo que estuvo en su espacio",
+                url: "https://www.infobae.com/deportes/2025/04/23/los-detalles-de-la-segunda-denuncia-penal-a-marcelo-moretti-presentada-por-un-dirigente-de-san-lorenzo-que-estuvo-en-su-espacio/"
               }
             ].map((noticia, i) => (
               <motion.a
@@ -377,7 +362,21 @@ export default function Home() {
                       </a>
                     </div>
                   </div>
-
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-gn-black flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 text-gn-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" strokeWidth="2" />
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" strokeWidth="2" />
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" strokeWidth="2" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gn-black mb-1">Instagram</h4>
+                      <a href="https://www.instagram.com/gonzaleznovillo_abogados/" target="_blank" rel="noopener noreferrer" className="text-gn-black text-sm font-medium underline underline-offset-2 hover:text-gn-gray transition-colors">
+                        @gonzaleznovillo_abogados
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -87,7 +87,12 @@ export default function Footer() {
                   gonzaleznovilloabogados@gmail.com
                 </a>
               </li>
-
+              <li className="flex items-center gap-3">
+                <Instagram className="w-4 h-4 text-gn-gray flex-shrink-0" />
+                <a href="https://www.instagram.com/gonzaleznovillo_abogados/" target="_blank" rel="noopener noreferrer" className="text-gn-gray hover:text-gn-white transition-colors text-sm">
+                  @gonzaleznovillo_abogados
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -96,18 +101,10 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-gn-gray/20">
         <div className="max-w-screen-xl mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gn-gray text-xs text-center md:text-left">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4">
+            <p className="text-gn-gray text-xs text-center">
               {currentYear} Estudio González Novillo. Todos los derechos reservados.
             </p>
-            <div className="flex gap-6 text-xs">
-              <Link href="#" className="text-gn-gray hover:text-gn-white transition-colors">
-                Política de Privacidad
-              </Link>
-              <Link href="#" className="text-gn-gray hover:text-gn-white transition-colors">
-                Términos de Uso
-              </Link>
-            </div>
           </div>
         </div>
       </div>
