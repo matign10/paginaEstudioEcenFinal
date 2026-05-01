@@ -26,10 +26,11 @@ const professionals = [
     role: "Socio",
     credentials: [
       "Egresado de la Facultad de Derecho de la UBA, con orientación en derecho penal",
-      "Seis años de experiencia en el Ministerio Público Fiscal de la CABA",
-      "Se desempeñó como auxiliar administrativo, escribiente, relator y prosecretario administrativo de Cámara",
-      "Conocimiento del sistema penal desde adentro antes de dedicarse al ejercicio profesional independiente",
-      "Ejercicio profesional independiente desde 2023"
+      "Seis años en el Ministerio Público Fiscal de la CABA, donde alcanzó el cargo de Prosecretario Administrativo de Cámara",
+      "Conocimiento del funcionamiento del sistema penal desde adentro",
+      "Cursa la Especialización en Justicia Constitucional y Derechos Humanos en el Instituto para el Desarrollo Constitucional (IDC)",
+      "Cursa el Programa de Actualización en Derecho Penal Económico de la UBA",
+      "Ejerce de forma independiente desde 2023"
     ],
     image: "/images/mati.jpg"
   }
