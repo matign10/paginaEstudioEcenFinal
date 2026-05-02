@@ -257,7 +257,7 @@ export default function Home() {
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <Image
-                  src="/images/equipo-gn.jpg"
+                  src="/images/foto-estudio.webp"
                   alt="Equipo de abogados penalistas del Estudio González Novillo en Buenos Aires"
                   width={800}
                   height={600}
