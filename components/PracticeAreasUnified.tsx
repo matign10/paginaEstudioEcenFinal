@@ -70,14 +70,13 @@ export default function PracticeAreasUnified() {
             <button
               key={area.id}
               onClick={() => setActiveArea(area.id)}
-              className={`flex-1 flex flex-col md:flex-row items-center justify-center gap-1 md:gap-3 px-2 md:px-6 py-4 md:py-5 text-xs md:text-sm font-medium tracking-wide transition-all duration-300 border-r last:border-r-0 ${
+              className={`flex-1 flex flex-col items-center justify-center gap-1 md:gap-2 px-2 md:px-6 py-4 md:py-5 text-xs md:text-sm font-medium tracking-wide transition-all duration-300 border-r last:border-r-0 ${
                 isActive 
                   ? 'bg-gn-black text-gn-white' 
                   : 'bg-gn-white text-gn-gray hover:text-gn-black hover:bg-gn-black/5'
               }`}
             >
-              {/* Mobile: icon + text, Desktop: only text */}
-              <AreaIcon className="w-5 h-5 md:hidden" />
+              <AreaIcon className="w-5 h-5" />
               <span className="text-center leading-tight">{area.title}</span>
             </button>
           );

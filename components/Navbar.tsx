@@ -66,7 +66,7 @@ export default function Navbar() {
               href="https://wa.me/message/7BQRXOHREOF4L1"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex flex-col items-center gap-0.5 bg-gn-black text-gn-white px-4 py-2 text-sm font-medium tracking-wide hover:bg-gn-gray transition-colors"
+              className="inline-flex flex-col items-center gap-0.5 border border-gn-black text-gn-black px-4 py-2 text-sm font-medium tracking-wide hover:bg-gn-black hover:text-gn-white transition-colors"
               aria-label="Agendar consulta por WhatsApp"
             >
               <span className="text-[10px] uppercase tracking-wider text-gn-gray">Agendá tu consulta</span>
