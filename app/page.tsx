@@ -9,6 +9,7 @@ import PracticeAreasUnified from "@/components/PracticeAreasUnified";
 import ProfessionalsGrid from "@/components/ProfessionalsGrid";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -408,6 +409,7 @@ export default function Home() {
 
       <Footer />
       <ScrollToTop />
+      <FloatingWhatsApp />
     </main>
   );
 }
