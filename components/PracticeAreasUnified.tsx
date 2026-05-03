@@ -76,7 +76,8 @@ export default function PracticeAreasUnified() {
                   : 'bg-gn-white text-gn-gray hover:text-gn-black hover:bg-gn-black/5'
               }`}
             >
-              <AreaIcon className="w-5 h-5" />
+              {/* Mobile: icon + text, Desktop: only text */}
+              <AreaIcon className="w-5 h-5 md:hidden" />
               <span className="text-center leading-tight">{area.title}</span>
             </button>
           );
