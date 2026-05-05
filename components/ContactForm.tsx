@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { supabase, ContactSubmission } from '@/lib/supabase';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -25,20 +24,19 @@ export default function ContactForm() {
     setSubmitStatus('idle');
     
     try {
-      const submission: ContactSubmission = {
-        nombre: formData.nombre,
-        email: formData.email,
-        telefono: formData.telefono || undefined,
-        consulta: formData.consulta
-      };
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      const { error } = await supabase
-        .from('contact_submissions')
-        .insert([submission]);
+      const data = await response.json();
 
-      if (error) {
-        console.error('[v0] Supabase error:', error);
-        throw error;
+      if (!response.ok) {
+        console.error('[v0] API error:', data);
+        throw new Error(data.error || 'Error al enviar');
       }
 
       setSubmitStatus('success');
