@@ -37,36 +37,39 @@ const casos = [
   }
 ];
 
+const ITEMS_VISIBLE = 3;
+
 export default function CasesCarousel() {
-  const [startIndex, setStartIndex] = useState(0);
-  
-  const itemsPerPage = 3;
-  const maxStartIndex = Math.max(0, casos.length - itemsPerPage);
-  
+  const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const total = casos.length;
+
   const handlePrev = () => {
-    setStartIndex(prev => Math.max(0, prev - 1));
+    setDirection(-1);
+    setIndex(prev => (prev - 1 + total) % total);
   };
-  
+
   const handleNext = () => {
-    setStartIndex(prev => Math.min(maxStartIndex, prev + 1));
+    setDirection(1);
+    setIndex(prev => (prev + 1) % total);
   };
-  
-  const visibleCasos = casos.slice(startIndex, startIndex + itemsPerPage);
-  
-  const canGoPrev = startIndex > 0;
-  const canGoNext = startIndex < maxStartIndex;
+
+  const visibleCasos = Array.from({ length: ITEMS_VISIBLE }, (_, i) =>
+    casos[(index + i) % total]
+  );
+
+  const variants = {
+    enter: (dir: number) => ({ opacity: 0, x: dir * 60 }),
+    center: { opacity: 1, x: 0 },
+    exit: (dir: number) => ({ opacity: 0, x: dir * -60 }),
+  };
 
   return (
     <div className="relative">
       {/* Left Arrow */}
       <button
         onClick={handlePrev}
-        disabled={!canGoPrev}
-        className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-14 z-10 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center border transition-all duration-300 bg-gn-white ${
-          canGoPrev
-            ? 'border-gn-black text-gn-black hover:bg-gn-black hover:text-gn-white'
-            : 'border-gn-gray/30 text-gn-gray/30 cursor-not-allowed'
-        }`}
+        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-14 z-10 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center border border-gn-black text-gn-black bg-gn-white hover:bg-gn-black hover:text-gn-white transition-colors duration-500"
         aria-label="Ver casos anteriores"
       >
         <ChevronLeft className="w-5 h-5" />
@@ -75,37 +78,34 @@ export default function CasesCarousel() {
       {/* Right Arrow */}
       <button
         onClick={handleNext}
-        disabled={!canGoNext}
-        className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-14 z-10 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center border transition-all duration-300 bg-gn-white ${
-          canGoNext
-            ? 'border-gn-black text-gn-black hover:bg-gn-black hover:text-gn-white'
-            : 'border-gn-gray/30 text-gn-gray/30 cursor-not-allowed'
-        }`}
+        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-14 z-10 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center border border-gn-black text-gn-black bg-gn-white hover:bg-gn-black hover:text-gn-white transition-colors duration-500"
         aria-label="Ver más casos"
       >
         <ChevronRight className="w-5 h-5" />
       </button>
 
       {/* Cards Container */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-8 lg:mx-0">
-        <AnimatePresence mode="popLayout">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-8 lg:mx-0 overflow-hidden">
+        <AnimatePresence mode="popLayout" custom={direction}>
           {visibleCasos.map((caso, i) => (
             <motion.a
-              key={caso.title}
+              key={`${caso.title}-${(index + i) % total}`}
               href={caso.url}
               target="_blank"
               rel="noopener noreferrer nofollow"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3, delay: i * 0.1 }}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="group block"
             >
-              <div className="h-full bg-gn-white border border-gn-gray/20 p-6 transition-all duration-300 hover:border-gn-black hover:shadow-lg min-h-[200px] flex flex-col">
+              <div className="h-full bg-gn-white border border-gn-gray/20 p-6 transition-all duration-500 hover:border-gn-black hover:shadow-lg min-h-[200px] flex flex-col">
                 <span className="inline-block px-3 py-1 bg-gn-black text-gn-white text-xs font-medium tracking-wide mb-4 self-start">
                   {caso.court}
                 </span>
-                <h3 className="text-lg font-display text-gn-black group-hover:text-gn-gray transition-colors leading-snug mb-2">
+                <h3 className="text-lg font-display text-gn-black group-hover:text-gn-gray transition-colors duration-500 leading-snug mb-2">
                   {caso.title}
                 </h3>
                 <p className="text-sm text-gn-gray leading-relaxed flex-1">
@@ -119,14 +119,14 @@ export default function CasesCarousel() {
 
       {/* Page Indicators */}
       <div className="flex justify-center gap-2 mt-8">
-        {Array.from({ length: maxStartIndex + 1 }).map((_, i) => (
+        {casos.map((_, i) => (
           <button
             key={i}
-            onClick={() => setStartIndex(i)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              i === startIndex ? 'bg-gn-black w-6' : 'bg-gn-gray/30 hover:bg-gn-gray'
+            onClick={() => { setDirection(i > index ? 1 : -1); setIndex(i); }}
+            className={`h-2 rounded-full transition-all duration-500 ${
+              i === index ? 'bg-gn-black w-6' : 'bg-gn-gray/30 hover:bg-gn-gray w-2'
             }`}
-            aria-label={`Ir a página ${i + 1}`}
+            aria-label={`Ir a caso ${i + 1}`}
           />
         ))}
       </div>
