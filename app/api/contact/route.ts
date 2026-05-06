@@ -45,6 +45,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Enviar email al estudio usando Resend
+    const submissionId = data?.[0]?.id;
+    let emailSent = false;
+    let emailError: string | null = null;
+    
     try {
       const emailBody = `
         <h2>Nuevo mensaje de contacto</h2>
@@ -70,13 +74,23 @@ export async function POST(request: NextRequest) {
         }),
       });
 
-      if (!response.ok) {
-        console.error("Resend error:", await response.text());
-        // No devolvemos error aquí porque el formulario se guardó en Supabase
+      if (response.ok) {
+        emailSent = true;
+      } else {
+        emailError = await response.text();
+        console.error("Resend error:", emailError);
       }
-    } catch (emailError) {
+    } catch (err) {
+      emailError = err instanceof Error ? err.message : "Error desconocido";
       console.error("Email sending error:", emailError);
-      // No devolvemos error aquí porque el formulario se guardó en Supabase
+    }
+
+    // Actualizar el registro con el estado del email
+    if (submissionId) {
+      await supabase
+        .from("contact_submissions")
+        .update({ email_sent: emailSent, email_error: emailError })
+        .eq("id", submissionId);
     }
 
     return NextResponse.json(
